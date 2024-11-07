@@ -62,4 +62,79 @@
             font-size: 18px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            box-sizing:
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        /* Hover and focus effects for input and select */
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Image displayed at the top -->
+    <img src="Leopic.png" alt="Profile Picture" class="header-image">
+
+    <div class="container">
+        <h1>Song Request</h1>
+
+        <form id="songRequestForm">
+            <label for="songTitle">Song Title:</label>
+            <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
+
+            <label for="speedOption">Playback Speed:</label>
+            <select id="speedOption" name="speedOption" required>
+                <option value="normal">Normal</option>
+                <option value="speedUp">Speed Up</option>
+                <option value="slowDown">Slow Down</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const songTitle = document.getElementById('songTitle').value;
+            const speedOption = document.getElementById('speedOption').value;
+            let speedText;
+
+            if (speedOption === "speedUp") {
+                speedText = "sped up";
+            } else if (speedOption === "slowDown") {
+                speedText = "slowed down";
+            } else {
+                speedText = "played at normal speed";
+            }
+
+            alert(`The song "${songTitle}" will be ${speedText}.`);
+        });
+    </script>
+
+</body>
+</html>
