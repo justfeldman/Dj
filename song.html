@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        label, select, input, button {
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Song Request</h1>
+        <form id="songRequestForm">
+            <label for="songTitle">Song Title:</label>
+            <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
+
+            <label for="speedOption">Playback Speed:</label>
+            <select id="speedOption" name="speedOption" required>
+                <option value="normal">Normal</option>
+                <option value="speedUp">Speed Up</option>
+                <option value="slowDown">Slow Down</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const songTitle = document.getElementById('songTitle').value;
+            const speedOption = document.getElementById('speedOption').value;
+            let speedText;
+
+            if (speedOption === "speedUp") {
+                speedText = "sped up";
+            } else if (speedOption === "slowDown") {
+                speedText = "slowed down";
+            } else {
+                speedText = "played at normal speed";
+            }
+
+            alert(`The song "${songTitle}" will be ${speedText}.`);
+        });
+    </script>
+
+</body>
+</html>
