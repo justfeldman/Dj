@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile-Optimized Song Request</title>
+    <title>What Do You Want to Hear Next?</title>
     <style>
         /* General body styling for central alignment and background */
         body {
@@ -95,6 +95,50 @@
         button:hover {
             background-color: #45a049;
         }
+
+        /* Styling for the song list section */
+        .song-list {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .song-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .song-info {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+
+        .vote-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .vote-button {
+            padding: 5px 10px;
+            font-size: 14px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .upvote {
+            background-color: #4CAF50;
+        }
+
+        .downvote {
+            background-color: #E74C3C;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +150,7 @@
     <img src="https://via.placeholder.com/100?text=QR+Code" alt="QR Code" class="qr-code"> <!-- Replace with actual QR code image -->
 
     <div class="container">
-        <h1>Song Request</h1>
+        <h1>What Do You Want to Hear Next?</h1>
 
         <form id="songRequestForm">
             <label for="songTitle">Song Title:</label>
@@ -121,6 +165,21 @@
 
             <button type="submit">Submit</button>
         </form>
+
+        <!-- Song list with voting options -->
+        <div class="song-list" id="songList">
+            <!-- Example of a song item, this should be dynamically populated from backend -->
+            <!-- Song title and playback speed -->
+            <div class="song-item">
+                <div class="song-info">
+                    <strong>Song Title</strong> - Normal Speed
+                </div>
+                <div class="vote-buttons">
+                    <button class="vote-button upvote">Upvote</button>
+                    <button class="vote-button downvote">Downvote</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -140,6 +199,18 @@
             }
 
             alert(`The song "${songTitle}" will be ${speedText}.`);
+
+            // Reset form
+            document.getElementById('songRequestForm').reset();
+        });
+
+        // Placeholder for dynamic voting functionality
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const voteType = this.classList.contains('upvote') ? 'upvote' : 'downvote';
+                alert(`You clicked ${voteType} for the song.`);
+                // In a real application, send vote to the backend here
+            });
         });
     </script>
 
