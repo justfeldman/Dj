@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Request</title>
+    <title>Mobile-Optimized Song Request</title>
     <style>
         /* General body styling for central alignment and background */
         body {
@@ -18,76 +18,80 @@
             color: #333;
         }
 
-        /* Styling for the main container */
+        /* Container styling with responsive width */
         .container {
             background: #ffffff;
-            padding: 50px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             text-align: center;
-            width: 500px; /* Wider container */
-            max-width: 90%;
+            width: 90%; /* Set to 90% for smaller screens */
+            max-width: 500px; /* Limit width on larger screens */
+            box-sizing: border-box;
         }
 
         /* Main header styling */
         h1 {
-            margin-bottom: 25px;
-            font-size: 36px;
+            margin-bottom: 20px;
+            font-size: 28px;
             color: #333;
         }
 
-        /* Styling for the larger image at the top */
+        /* Styling for the larger user image at the top */
         .header-image {
-            width: 250px; /* Larger image */
-            height: 250px; /* Consistent height */
-            border-radius: 12px; /* Slightly rounded corners */
+            width: 100px; /* Adjust for mobile */
+            height: 100px;
+            border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        /* Styling labels, input, and select for a modern look */
+        /* QR code styling */
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto 20px;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling labels, input, and select for accessibility */
         label {
-            font-size: 22px;
+            font-size: 18px;
             margin-top: 15px;
             color: #555;
             text-align: left;
             display: block;
         }
 
-        /* Input field styling */
+        /* Input field styling for mobile */
         input[type="text"], select {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             margin-top: 10px;
-            font-size: 18px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
 
-        /* Hover and focus effects for input and select */
-        input[type="text"]:focus, select:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        /* Button styling */
+        /* Button styling for larger tap area */
         button {
             width: 100%;
-            padding: 18px;
-            font-size: 22px;
+            padding: 15px;
+            font-size: 18px;
             font-weight: bold;
             color: #ffffff;
             background-color: #4CAF50;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 25px;
+            margin-top: 20px;
             transition: background-color 0.3s;
         }
 
-        /* Button hover effect */
         button:hover {
             background-color: #45a049;
         }
@@ -95,8 +99,11 @@
 </head>
 <body>
 
-    <!-- Larger Image displayed at the top -->
-    <img src="Leopic.png" alt="Profile Picture" class="header-image">
+    <!-- User Image at the top -->
+    <img src="Leopic.png" alt="User Image" class="header-image">
+
+    <!-- QR Code for easy access or profile linking -->
+    <img src="https://via.placeholder.com/100?text=QR+Code" alt="QR Code" class="qr-code"> <!-- Replace with actual QR code image -->
 
     <div class="container">
         <h1>Song Request</h1>
