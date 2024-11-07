@@ -5,51 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Request</title>
     <style>
+        /* General body styling for central alignment and background */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f2f2f2;
+            background-color: #e8f0f2;
             margin: 0;
             flex-direction: column;
+            color: #333;
         }
+
+        /* Styling for the main container */
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             text-align: center;
-            width: 300px;
+            width: 350px;
+            max-width: 90%;
         }
+
+        /* Main header styling */
         h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #333;
         }
+
+        /* Styling for the image with rounded and shadow */
         img {
-            width: 120px;
-            height: auto;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 0 auto 20px auto;
+            width: 150px; /* Larger image */
+            height: 150px; /* Consistent height */
+            border-radius: 50%; /* Makes the image circular */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        /* Styling labels, input, and select for a modern look */
+        label {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #555;
+            text-align: left;
             display: block;
         }
-        label, select, input, button {
-            margin-top: 10px;
-            display: block;
+
+        /* Input field styling */
+        input[type="text"], select {
             width: 100%;
+            padding: 12px;
+            margin-top: 8px;
             font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
         }
+
+        /* Hover and focus effects for input and select */
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Button styling */
         button {
-            margin-top: 20px;
-            padding: 10px;
-            color: white;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
             background-color: #4CAF50;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s;
         }
+
+        /* Button hover effect */
         button:hover {
             background-color: #45a049;
         }
