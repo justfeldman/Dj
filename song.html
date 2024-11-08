@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What Do You Want to Hear Next?</title>
     <style>
-        /* General body styling for central alignment and background */
+        /* Background gradient animation */
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #e0f7ff; /* Light blue background */
+            background: linear-gradient(135deg, #ff6ec4, #7873f5);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
             margin: 0;
             flex-direction: column;
             color: #333;
+            overflow: hidden;
         }
 
-        /* Container styling with responsive width */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container styling with blue theme */
         .container {
             background: #ffffff;
             padding: 30px;
@@ -28,38 +37,40 @@
             width: 90%;
             max-width: 450px;
             box-sizing: border-box;
-            border: 2px solid #007acc; /* Blue border */
+            border: 2px solid #007acc;
+            animation: pulse 2s infinite;
         }
 
-        /* Main header styling */
+        /* Neon glow for title */
         h1 {
-            margin-bottom: 25px;
+            color: #ffffff;
             font-size: 32px;
-            color: #007acc; /* Blue header */
+            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6, 0 0 30px #00e6e6, 0 0 40px #00e6e6;
+            background: linear-gradient(270deg, #ff6ec4, #7873f5, #ff6ec4, #ff944d);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowText 8s ease infinite;
         }
 
-        /* Styling for the larger user image at the top */
-        .header-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            border: 2px solid #007acc; /* Blue border around image */
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* QR code styling */
         .qr-code {
-            width: 200px; /* Large size for better visibility */
+            width: 200px;
             height: 200px;
             margin: 20px auto;
             display: block;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #007acc; /* Blue border around QR */
+            border: 2px solid #007acc;
         }
 
-        /* Styling labels and input */
+        /* Input and button styling */
         label {
             font-size: 18px;
             margin-top: 15px;
@@ -68,95 +79,90 @@
             display: block;
         }
 
-        /* Input styling for mobile */
         input[type="text"] {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
             font-size: 16px;
-            border: 1px solid #007acc; /* Blue border */
+            border: 1px solid #007acc;
             border-radius: 8px;
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
 
-        input[type="text"]:focus {
-            border-color: #005bb5;
-            outline: none;
-        }
-
-        /* Button styling with blue theme */
         button {
             width: 100%;
             padding: 15px;
             font-size: 18px;
             font-weight: bold;
             color: #ffffff;
-            background-color: #007acc; /* Blue button */
+            background-color: #007acc;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             margin-top: 20px;
             transition: background-color 0.3s;
+            animation: pulse 2s infinite;
         }
 
         button:hover {
-            background-color: #005bb5; /* Darker blue on hover */
+            background-color: #005bb5;
         }
 
-        /* Styling for the song list section */
-        .song-list {
-            margin-top: 30px;
-            text-align: left;
+        button:active {
+            animation: strobe 0.2s ease;
         }
 
-        .song-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f1f9ff; /* Light blue background */
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        .song-info {
-            flex-grow: 1;
-            margin-right: 20px;
-            color: #007acc;
+        @keyframes strobe {
+            0%, 100% { background-color: #007acc; }
+            50% { background-color: #ffffff; }
         }
 
-        .vote-buttons {
-            display: flex;
-            gap: 10px;
+        /* Floating icons animation */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        .vote-button {
-            padding: 5px 10px;
-            font-size: 14px;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .icon {
+            position: absolute;
+            bottom: -50px;
+            font-size: 30px;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.7;
         }
 
-        .upvote {
-            background-color: #007acc; /* Blue upvote */
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
         }
 
-        .downvote {
-            background-color: #e74c3c; /* Red downvote */
-        }
+        .icon:nth-child(1) { left: 20%; animation-duration: 6s; }
+        .icon:nth-child(2) { left: 50%; animation-duration: 8s; }
+        .icon:nth-child(3) { left: 80%; animation-duration: 7s; }
     </style>
 </head>
 <body>
 
-    <!-- User Image at the top -->
-    <img src="Leopic.png" alt="User Image" class="header-image">
+    <!-- Floating icons -->
+    <div class="floating-icons">
+        <span class="icon">🎶</span>
+        <span class="icon">🎉</span>
+        <span class="icon">💿</span>
+    </div>
 
     <!-- QR Code for easy access or profile linking -->
-    <img src="qr-code.png" alt="QR Code" class="qr-code"> <!-- Updated to use "qr-code.png" -->
+    <img src="qr-code.png" alt="QR Code" class="qr-code"> <!-- Replace with actual QR code image -->
 
     <div class="container">
         <h1>What Do You Want to Hear Next?</h1>
@@ -164,44 +170,24 @@
         <form id="songRequestForm">
             <label for="songTitle">Song Title:</label>
             <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
-
             <button type="submit">Submit</button>
         </form>
-
-        <!-- Song list with voting options -->
-        <div class="song-list" id="songList">
-            <!-- Example of a song item, this should be dynamically populated from backend -->
-            <div class="song-item">
-                <div class="song-info">
-                    <strong>Song Title</strong>
-                </div>
-                <div class="vote-buttons">
-                    <button class="vote-button upvote">Upvote</button>
-                    <button class="vote-button downvote">Downvote</button>
-                </div>
-            </div>
-        </div>
     </div>
 
+    <!-- Confetti animation on page load -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.min.js"></script>
     <script>
-        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const songTitle = document.getElementById('songTitle').value;
-
-            alert(`The song "${songTitle}" has been submitted.`);
-
-            // Reset form
-            document.getElementById('songRequestForm').reset();
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
         });
 
-        // Placeholder for dynamic voting functionality
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const voteType = this.classList.contains('upvote') ? 'upvote' : 'downvote';
-                alert(`You clicked ${voteType} for the song.`);
-                // In a real application, send vote to the backend here
-            });
+        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const songTitle = document.getElementById('songTitle').value;
+            alert(`The song "${songTitle}" has been submitted!`);
+            document.getElementById('songRequestForm').reset();
         });
     </script>
 
