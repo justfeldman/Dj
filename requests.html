@@ -1,174 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Song Requests</title>
-    <style>
-        /* Body styling with background gradient animation */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #ff6ec4, #7873f5);
-            background-size: 200% 200%;
-            animation: gradientAnimation 10s ease infinite;
-            color: #ffffff;
-        }
+<style>
+    /* Body styling with background image */
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: url('stars.png') no-repeat center center fixed;
+        background-size: cover;
+        color: #ffffff;
+    }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* Container styling */
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 700px;
+        text-align: center;
+        overflow: hidden;
+    }
 
-        /* Container styling */
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 700px;
-            text-align: center;
-            overflow: hidden;
-        }
+    h1 {
+        color: #007acc;
+        margin-bottom: 20px;
+        font-size: 32px;
+        text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
+    }
 
-        h1 {
-            color: #007acc;
-            margin-bottom: 20px;
-            font-size: 32px;
-            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
-        }
+    .request-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        margin-top: 20px;
+    }
 
-        .request-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
+    .request-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f1f9ff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .request-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f1f9ff;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    /* Column headers */
+    .column-header {
+        font-weight: bold;
+        text-align: left;
+        padding: 10px 0;
+        color: #333;
+    }
 
-        /* Column headers */
-        .column-header {
-            font-weight: bold;
-            text-align: left;
-            padding: 10px 0;
-            color: #333;
-        }
+    /* Buttons */
+    .vote-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 5px;
+    }
 
-        /* Buttons */
-        .vote-button {
-            padding: 8px 12px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
+    .upvote {
+        background-color: #28a745;
+        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    }
 
-        .upvote {
-            background-color: #28a745;
-            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-        }
+    .downvote {
+        background-color: #dc3545;
+        box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    }
 
-        .downvote {
-            background-color: #dc3545;
-            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
-        }
+    .upvote:hover {
+        background-color: #218838;
+    }
 
-        .upvote:hover {
-            background-color: #218838;
-        }
-
-        .downvote:hover {
-            background-color: #c82333;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>All Song Requests</h1>
-    
-    <!-- Column Headers -->
-    <div class="request-list">
-        <div class="column-header">Song</div>
-        <div class="column-header">Requester Name</div>
-        <div class="column-header">Vote</div>
-    </div>
-
-    <!-- Dynamic Song List -->
-    <div class="request-list" id="requestList">
-        <!-- Example items; will be replaced by fetched data -->
-        <!-- Template: Each request-item will have song, requester name, and vote buttons -->
-    </div>
-
-    <!-- Link back to the Song Request Page -->
-    <a href="index.html" style="display: block; margin-top: 20px; color: #007acc;">Back to Request Page</a>
-</div>
-
-<script>
-    // Fetch requests from the backend and display them
-    fetch('http://localhost:5000/get_requests')
-        .then(response => response.json())
-        .then(data => {
-            const requestList = document.getElementById('requestList');
-            data.forEach(request => {
-                // Create a container for each song request item
-                const songItem = document.createElement('div');
-                songItem.classList.add('request-item');
-
-                // Song title
-                const songTitle = document.createElement('div');
-                songTitle.textContent = request.song;
-                songItem.appendChild(songTitle);
-
-                // Requester name
-                const requesterName = document.createElement('div');
-                requesterName.textContent = request.name;
-                songItem.appendChild(requesterName);
-
-                // Vote buttons container
-                const voteButtons = document.createElement('div');
-
-                // Upvote button
-                const upvoteButton = document.createElement('button');
-                upvoteButton.classList.add('vote-button', 'upvote');
-                upvoteButton.textContent = "Upvote";
-                upvoteButton.onclick = () => alert("You upvoted " + request.song);
-                voteButtons.appendChild(upvoteButton);
-
-                // Downvote button
-                const downvoteButton = document.createElement('button');
-                downvoteButton.classList.add('vote-button', 'downvote');
-                downvoteButton.textContent = "Downvote";
-                downvoteButton.onclick = () => alert("You downvoted " + request.song);
-                voteButtons.appendChild(downvoteButton);
-
-                // Append vote buttons to the song item
-                songItem.appendChild(voteButtons);
-
-                // Append song item to the request list
-                requestList.appendChild(songItem);
-            });
-        })
-        .catch(error => console.error('Error:', error));
-</script>
-
-</body>
-</html>
+    .downvote:hover {
+        background-color: #c82333;
+    }
+</style>
