@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        /* Body styling with background image */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url('stars.png') no-repeat center center fixed;
+            background-size: contain;
+            color: #ffffff;
+            overflow-y: scroll; /* Allows scrolling for multiple rows */
+        }
+
+        /* Main container for the grid */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Individual square styling */
+        .gallery-item {
+            width: 100%;
+            padding-top: 100%; /* Creates a square aspect ratio */
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f1f1f1;
+        }
+
+        /* Image styling within the squares */
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the square without distortion */
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery-container">
+    <!-- Gallery items for images -->
+    <div class="gallery-item">
+        <img src="image1.jpg" alt="Image 1">
+    </div>
+    <div class="gallery-item">
+        <img src="image2.jpg" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+        <img src="image3.jpg" alt="Image 3">
+    </div>
+    <div class="gallery-item">
+        <img src="image4.jpg" alt="Image 4">
+    </div>
+    <div class="gallery-item">
+        <img src="image5.jpg" alt="Image 5">
+    </div>
+    <div class="gallery-item">
+        <img src="image6.jpg" alt="Image 6">
+    </div>
+</div>
+
+</body>
+</html>
