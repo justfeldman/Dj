@@ -1,88 +1,76 @@
-<style>
-    /* Body styling with background image */
-    body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background: url('stars.png') no-repeat center center fixed;
-        background-size: cover;
-        color: #ffffff;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Song Requests</title>
+    <style>
+        /* Body styling with background image */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: url('stars.png') no-repeat center center fixed;
+            background-size: contain;
+            color: #ffffff;
+        }
 
-    /* Container styling */
-    .container {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        width: 90%;
-        max-width: 700px;
-        text-align: center;
-        overflow: hidden;
-    }
+        /* Set List container styling */
+        .set-list-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
 
-    h1 {
-        color: #007acc;
-        margin-bottom: 20px;
-        font-size: 32px;
-        text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
-    }
+        /* Set List title */
+        .set-list-title {
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-    .request-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-        margin-top: 20px;
-    }
+        /* Song list styling */
+        .song-list {
+            list-style-type: none;
+            padding: 0;
+            color: #333;
+            font-size: 18px;
+        }
 
-    .request-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #f1f9ff;
-        padding: 10px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .song-list li {
+            margin: 8px 0;
+            padding: 8px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
 
-    /* Column headers */
-    .column-header {
-        font-weight: bold;
-        text-align: left;
-        padding: 10px 0;
-        color: #333;
-    }
+<div class="set-list-container">
+    <div class="set-list-title">SET LIST</div>
+    <ul class="song-list">
+        <li>Starry Dreams</li>
+        <li>Echoes in the Dark</li>
+        <li>Galactic Voyage</li>
+        <li>Whispered Secrets</li>
+        <li>Celestial Lights</li>
+        <li>Astral Melody</li>
+        <li>Twilight's Edge</li>
+        <li>Moonlit Waves</li>
+        <li>Cosmic Pulse</li>
+        <li>Stellar Journey</li>
+    </ul>
+</div>
 
-    /* Buttons */
-    .vote-button {
-        padding: 8px 12px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-left: 5px;
-    }
-
-    .upvote {
-        background-color: #28a745;
-        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-    }
-
-    .downvote {
-        background-color: #dc3545;
-        box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
-    }
-
-    .upvote:hover {
-        background-color: #218838;
-    }
-
-    .downvote:hover {
-        background-color: #c82333;
-    }
-</style>
+</body>
+</html>
