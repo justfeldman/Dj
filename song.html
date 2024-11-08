@@ -38,7 +38,7 @@
             color: #007acc; /* Blue header */
         }
 
-        /* Styling for the user image at the top */
+        /* Styling for the larger user image at the top */
         .header-image {
             width: 120px;
             height: 120px;
@@ -48,7 +48,7 @@
             border: 2px solid #007acc; /* Blue border around image */
         }
 
-        /* Styling for the large QR code */
+        /* QR code styling */
         .qr-code {
             width: 200px; /* Large size for better visibility */
             height: 200px;
@@ -59,7 +59,7 @@
             border: 2px solid #007acc; /* Blue border around QR */
         }
 
-        /* Styling labels, input, and select */
+        /* Styling labels and input */
         label {
             font-size: 18px;
             margin-top: 15px;
@@ -68,8 +68,8 @@
             display: block;
         }
 
-        /* Input and select styling for mobile */
-        input[type="text"], select {
+        /* Input styling for mobile */
+        input[type="text"] {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
@@ -80,7 +80,7 @@
             transition: border-color 0.3s;
         }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus {
             border-color: #005bb5;
             outline: none;
         }
@@ -165,13 +165,6 @@
             <label for="songTitle">Song Title:</label>
             <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
 
-            <label for="speedOption">Playback Speed:</label>
-            <select id="speedOption" name="speedOption" required>
-                <option value="normal">Normal</option>
-                <option value="speedUp">Speed Up</option>
-                <option value="slowDown">Slow Down</option>
-            </select>
-
             <button type="submit">Submit</button>
         </form>
 
@@ -180,7 +173,7 @@
             <!-- Example of a song item, this should be dynamically populated from backend -->
             <div class="song-item">
                 <div class="song-info">
-                    <strong>Song Title</strong> - Normal Speed
+                    <strong>Song Title</strong>
                 </div>
                 <div class="vote-buttons">
                     <button class="vote-button upvote">Upvote</button>
@@ -195,18 +188,8 @@
             event.preventDefault();
 
             const songTitle = document.getElementById('songTitle').value;
-            const speedOption = document.getElementById('speedOption').value;
-            let speedText;
 
-            if (speedOption === "speedUp") {
-                speedText = "sped up";
-            } else if (speedOption === "slowDown") {
-                speedText = "slowed down";
-            } else {
-                speedText = "played at normal speed";
-            }
-
-            alert(`The song "${songTitle}" will be ${speedText}.`);
+            alert(`The song "${songTitle}" has been submitted.`);
 
             // Reset form
             document.getElementById('songRequestForm').reset();
