@@ -38,7 +38,7 @@
             color: #007acc; /* Blue header */
         }
 
-        /* Styling for the larger user image at the top */
+        /* Styling for the user image at the top */
         .header-image {
             width: 120px;
             height: 120px;
@@ -48,11 +48,11 @@
             border: 2px solid #007acc; /* Blue border around image */
         }
 
-        /* QR code styling */
+        /* Styling for the large QR code */
         .qr-code {
-            width: 100px;
-            height: 100px;
-            margin: 10px auto 20px;
+            width: 200px; /* Large size for better visibility */
+            height: 200px;
+            margin: 20px auto;
             display: block;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -156,7 +156,7 @@
     <img src="Leopic.png" alt="User Image" class="header-image">
 
     <!-- QR Code for easy access or profile linking -->
-    <img src="https://via.placeholder.com/100?text=QR+Code" alt="QR Code" class="qr-code"> <!-- Replace with actual QR code image -->
+    <img src="qr-code.png" alt="QR Code" class="qr-code"> <!-- Updated to use "qr-code.png" -->
 
     <div class="container">
         <h1>What Do You Want to Hear Next?</h1>
@@ -192,3 +192,35 @@
 
     <script>
         document.getElementById('songRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const songTitle = document.getElementById('songTitle').value;
+            const speedOption = document.getElementById('speedOption').value;
+            let speedText;
+
+            if (speedOption === "speedUp") {
+                speedText = "sped up";
+            } else if (speedOption === "slowDown") {
+                speedText = "slowed down";
+            } else {
+                speedText = "played at normal speed";
+            }
+
+            alert(`The song "${songTitle}" will be ${speedText}.`);
+
+            // Reset form
+            document.getElementById('songRequestForm').reset();
+        });
+
+        // Placeholder for dynamic voting functionality
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const voteType = this.classList.contains('upvote') ? 'upvote' : 'downvote';
+                alert(`You clicked ${voteType} for the song.`);
+                // In a real application, send vote to the backend here
+            });
+        });
+    </script>
+
+</body>
+</html>
