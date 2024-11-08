@@ -12,7 +12,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #e8f0f2;
+            background-color: #e0f7ff; /* Light blue background */
             margin: 0;
             flex-direction: column;
             color: #333;
@@ -21,29 +21,31 @@
         /* Container styling with responsive width */
         .container {
             background: #ffffff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             text-align: center;
-            width: 90%; /* Set to 90% for smaller screens */
-            max-width: 500px; /* Limit width on larger screens */
+            width: 90%;
+            max-width: 450px;
             box-sizing: border-box;
+            border: 2px solid #007acc; /* Blue border */
         }
 
         /* Main header styling */
         h1 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #333;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: #007acc; /* Blue header */
         }
 
         /* Styling for the larger user image at the top */
         .header-image {
-            width: 100px; /* Adjust for mobile */
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
+            border: 2px solid #007acc; /* Blue border around image */
         }
 
         /* QR code styling */
@@ -54,9 +56,10 @@
             display: block;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007acc; /* Blue border around QR */
         }
 
-        /* Styling labels, input, and select for accessibility */
+        /* Styling labels, input, and select */
         label {
             font-size: 18px;
             margin-top: 15px;
@@ -65,26 +68,31 @@
             display: block;
         }
 
-        /* Input field styling for mobile */
+        /* Input and select styling for mobile */
         input[type="text"], select {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
             font-size: 16px;
-            border: 1px solid #ccc;
+            border: 1px solid #007acc; /* Blue border */
             border-radius: 8px;
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
 
-        /* Button styling for larger tap area */
+        input[type="text"]:focus, select:focus {
+            border-color: #005bb5;
+            outline: none;
+        }
+
+        /* Button styling with blue theme */
         button {
             width: 100%;
             padding: 15px;
             font-size: 18px;
             font-weight: bold;
             color: #ffffff;
-            background-color: #4CAF50;
+            background-color: #007acc; /* Blue button */
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -93,7 +101,7 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #005bb5; /* Darker blue on hover */
         }
 
         /* Styling for the song list section */
@@ -107,7 +115,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: #f1f9ff; /* Light blue background */
             margin-bottom: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -116,6 +124,7 @@
         .song-info {
             flex-grow: 1;
             margin-right: 20px;
+            color: #007acc;
         }
 
         .vote-buttons {
@@ -133,11 +142,11 @@
         }
 
         .upvote {
-            background-color: #4CAF50;
+            background-color: #007acc; /* Blue upvote */
         }
 
         .downvote {
-            background-color: #E74C3C;
+            background-color: #e74c3c; /* Red downvote */
         }
     </style>
 </head>
@@ -169,7 +178,6 @@
         <!-- Song list with voting options -->
         <div class="song-list" id="songList">
             <!-- Example of a song item, this should be dynamically populated from backend -->
-            <!-- Song title and playback speed -->
             <div class="song-item">
                 <div class="song-info">
                     <strong>Song Title</strong> - Normal Speed
@@ -184,35 +192,3 @@
 
     <script>
         document.getElementById('songRequestForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const songTitle = document.getElementById('songTitle').value;
-            const speedOption = document.getElementById('speedOption').value;
-            let speedText;
-
-            if (speedOption === "speedUp") {
-                speedText = "sped up";
-            } else if (speedOption === "slowDown") {
-                speedText = "slowed down";
-            } else {
-                speedText = "played at normal speed";
-            }
-
-            alert(`The song "${songTitle}" will be ${speedText}.`);
-
-            // Reset form
-            document.getElementById('songRequestForm').reset();
-        });
-
-        // Placeholder for dynamic voting functionality
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const voteType = this.classList.contains('upvote') ? 'upvote' : 'downvote';
-                alert(`You clicked ${voteType} for the song.`);
-                // In a real application, send vote to the backend here
-            });
-        });
-    </script>
-
-</body>
-</html>
