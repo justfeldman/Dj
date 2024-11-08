@@ -3,193 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What Do You Want to Hear Next?</title>
+    <title>What Do You Wanna Hear Next?</title>
     <style>
-        /* Background gradient animation */
+        /* Space-themed background */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #ff6ec4, #7873f5);
-            background-size: 200% 200%;
-            animation: gradientAnimation 10s ease infinite;
             margin: 0;
-            flex-direction: column;
-            color: #333;
+            overflow: hidden;
+            background: url('https://i.pinimg.com/originals/a0/73/0b/a0730bf7f1eb45f7f899b420113e0d5d.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* Floating emoji animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2.5em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .emoji-1 { top: 20%; left: 15%; animation-delay: 0s; }
+        .emoji-2 { top: 50%; left: 75%; animation-delay: 1s; }
+        .emoji-3 { top: 70%; left: 20%; animation-delay: 2s; }
+        .emoji-4 { top: 30%; left: 50%; animation-delay: 1.5s; }
+        .emoji-5 { top: 80%; left: 40%; animation-delay: 2.5s; }
+        
+        /* Container styling */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
             overflow: hidden;
         }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Container styling with blue theme */
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            width: 90%;
-            max-width: 450px;
-            box-sizing: border-box;
-            border: 2px solid #007acc;
-            animation: pulse 2s infinite;
-        }
-
-        /* Neon glow for title */
+        /* Title styling to match a blue star */
         h1 {
-            color: #ffffff;
-            font-size: 32px;
-            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6, 0 0 30px #00e6e6, 0 0 40px #00e6e6;
-            background: linear-gradient(270deg, #ff6ec4, #7873f5, #ff6ec4, #ff944d);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbowText 8s ease infinite;
+            font-size: 2.5em;
+            color: #1e90ff; /* Bright blue color */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
         }
 
-        @keyframes rainbowText {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* QR code styling */
-        .qr-code {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #007acc;
-        }
-
-        /* Input and button styling */
+        /* Form fields styling */
         label {
-            font-size: 18px;
-            margin-top: 15px;
-            color: #555;
-            text-align: left;
+            font-size: 1.2em;
             display: block;
+            margin-top: 15px;
         }
 
-        input[type="text"] {
+        input[type="text"], select {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            font-size: 16px;
-            border: 1px solid #007acc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
+            margin-top: 5px;
         }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #007acc;
+        /* Button styling */
+        .submit-button {
+            background-color: #1e90ff;
+            color: white;
             border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
             margin-top: 20px;
-            transition: background-color 0.3s;
-            animation: pulse 2s infinite;
-        }
-
-        button:hover {
-            background-color: #005bb5;
-        }
-
-        button:active {
-            animation: strobe 0.2s ease;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes strobe {
-            0%, 100% { background-color: #007acc; }
-            50% { background-color: #ffffff; }
-        }
-
-        /* Floating icons animation */
-        .floating-icons {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
         }
 
-        .icon {
-            position: absolute;
-            bottom: -50px;
-            font-size: 30px;
-            animation: floatUp 8s linear infinite;
-            opacity: 0.7;
+        .submit-button:hover {
+            background-color: #1c75d8;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) translateX(0); opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
-        }
-
-        .icon:nth-child(1) { left: 20%; animation-duration: 6s; }
-        .icon:nth-child(2) { left: 50%; animation-duration: 8s; }
-        .icon:nth-child(3) { left: 80%; animation-duration: 7s; }
     </style>
 </head>
 <body>
+    <!-- Floating emojis for a fun effect -->
+    <div class="emoji emoji-1">🌟</div>
+    <div class="emoji emoji-2">💫</div>
+    <div class="emoji emoji-3">🚀</div>
+    <div class="emoji emoji-4">🌌</div>
+    <div class="emoji emoji-5">🪐</div>
 
-    <!-- Floating icons -->
-    <div class="floating-icons">
-        <span class="icon">🎶</span>
-        <span class="icon">🎉</span>
-        <span class="icon">💿</span>
-    </div>
-
-    <!-- QR Code for easy access or profile linking -->
-    <img src="qr-code.png" alt="QR Code" class="qr-code"> <!-- Replace with actual QR code image -->
-
+    <!-- Main container -->
     <div class="container">
-        <h1>What Do You Want to Hear Next?</h1>
+        <h1>What Do You Wanna Hear Next?</h1>
+        <label for="songTitle">Song Title:</label>
+        <input type="text" id="songTitle" placeholder="Enter song title" required>
 
-        <form id="songRequestForm">
-            <label for="songTitle">Song Title:</label>
-            <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
-            <button type="submit">Submit</button>
-        </form>
+        <button class="submit-button" onclick="submitRequest()">Submit</button>
     </div>
 
-    <!-- Confetti animation on page load -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.min.js"></script>
     <script>
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-
-        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const songTitle = document.getElementById('songTitle').value;
-            alert(`The song "${songTitle}" has been submitted!`);
-            document.getElementById('songRequestForm').reset();
-        });
+        function submitRequest() {
+            const songTitle = document.getElementById("songTitle").value;
+            if (songTitle) {
+                alert(`You requested: ${songTitle}! Thank you!`);
+                document.getElementById("songTitle").value = ""; // Clear the input field
+            } else {
+                alert("Please enter a song title!");
+            }
+        }
     </script>
-
 </body>
 </html>
