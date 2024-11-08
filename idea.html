@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore New Ideas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #4a90e2, #7b4397);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .cta-button {
+            background-color: #ff6ec4;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            width: 45%;
+        }
+
+        .cta-button:hover {
+            background-color: #ff4081;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Styling for the custom idea submission form */
+        .idea-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .idea-form input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        .submit-idea-button {
+            background-color: #007acc;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .submit-idea-button:hover {
+            background-color: #005fa3;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-idea-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Explore New Ideas</h1>
+        <p>Click any of these buttons and I'll make it happen! Choose your favorite or submit your own idea below:</p>
+        
+        <!-- Button Options for Different Ideas -->
+        <div class="button-container">
+            <button class="cta-button" onclick="selectIdea('DJ Class')">DJ Class</button>
+            <button class="cta-button" onclick="selectIdea('AI Coding Class')">AI Coding Class</button>
+        </div>
+
+        <!-- Custom Idea Submission Form -->
+        <form class="idea-form" onsubmit="submitCustomIdea(event)">
+            <input type="text" id="customIdea" placeholder="Got a different idea? Enter it here!" required>
+            <button type="submit" class="submit-idea-button">Submit Your Idea</button>
+        </form>
+    </div>
+
+    <script>
+        // Function for preset idea buttons
+        function selectIdea(idea) {
+            alert(`You selected: ${idea}. We'll get started on making it happen!`);
+            // In a real app, you could send this selection to a backend server to track interest
+        }
+
+        // Function to handle custom idea submissions
+        function submitCustomIdea(event) {
+            event.preventDefault();
+            const customIdea = document.getElementById("customIdea").value;
+            if (customIdea.trim() !== "") {
+                alert(`Thank you for submitting your idea: "${customIdea}". We’ll consider it!`);
+                // Optionally, send this idea to a backend server to save the custom suggestion
+                document.getElementById("customIdea").value = ""; // Clear input field
+            }
+        }
+    </script>
+</body>
+</html>
