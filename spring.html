@@ -4,6 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cottage Springs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            margin-bottom: 30px;
+        }
+        #wordle-container {
+            margin-top: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .guess {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .letter {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .present {
+            background-color: #FFC107;
+            color: white;
+        }
+        .absent {
+            background-color: #D3D3D3;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,34 +58,72 @@
         <p>Refreshing drinks, crafted for every occasion.</p>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Cottage Springs</h2>
-        <p>Cottage Springs offers a variety of refreshing, low-calorie drinks made with all-natural ingredients. Perfect for any occasion, whether you're relaxing by the lake or hosting a get-together.</p>
+    <!-- Wordle Game Section -->
+    <section id="wordle-container">
+        <h2>Mini Wordle Game</h2>
+        <p>Guess the word related to Cottage Springs!</p>
+        <div id="wordle-rows">
+            <!-- Rows for guesses will appear here -->
+        </div>
+        <input type="text" id="guess-input" maxlength="5" placeholder="Enter your guess" />
+        <button onclick="makeGuess()">Submit</button>
+        <p id="message"></p>
     </section>
 
-    <!-- Product Section -->
-    <section id="products">
-        <h2>Our Products</h2>
-        <ul>
-            <li><strong>Vodka Soda Lime</strong> - Crisp, light, and refreshing.</li>
-            <li><strong>Vodka Soda Raspberry</strong> - A splash of berry flavor with a smooth finish.</li>
-            <li><strong>Vodka Lemonade</strong> - A classic summer staple with a twist.</li>
-            <li><strong>Gin Soda Watermelon</strong> - A refreshing take on gin, infused with watermelon.</li>
-        </ul>
-    </section>
+    <script>
+        const wordToGuess = "LIME"; // The word to guess, can be changed to any 4-letter word
+        const maxAttempts = 6;
+        let attempts = 0;
 
-    <!-- Find Us Section -->
-    <section id="find-us">
-        <h2>Find Us</h2>
-        <p>Cottage Springs drinks are available at most major retailers and local stores across Canada. Use our store locator to find your favorite drink near you!</p>
-    </section>
+        function createGuessRow() {
+            const row = document.createElement("div");
+            row.className = "guess";
+            for (let i = 0; i < wordToGuess.length; i++) {
+                const cell = document.createElement("div");
+                cell.className = "letter";
+                row.appendChild(cell);
+            }
+            document.getElementById("wordle-rows").appendChild(row);
+        }
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to reach out to our team at <a href="mailto:info@cottagesprings.com">info@cottagesprings.com</a></p>
-    </section>
+        function makeGuess() {
+            const guess = document.getElementById("guess-input").value.toUpperCase();
+            if (guess.length !== wordToGuess.length) {
+                document.getElementById("message").textContent = "Please enter a 4-letter word.";
+                return;
+            }
+
+            const row = document.getElementsByClassName("guess")[attempts];
+            for (let i = 0; i < wordToGuess.length; i++) {
+                const letterCell = row.children[i];
+                letterCell.textContent = guess[i];
+                if (guess[i] === wordToGuess[i]) {
+                    letterCell.classList.add("correct");
+                } else if (wordToGuess.includes(guess[i])) {
+                    letterCell.classList.add("present");
+                } else {
+                    letterCell.classList.add("absent");
+                }
+            }
+
+            attempts++;
+            document.getElementById("guess-input").value = "";
+            if (guess === wordToGuess) {
+                document.getElementById("message").textContent = "Congratulations! You guessed the word!";
+                document.getElementById("guess-input").disabled = true;
+            } else if (attempts === maxAttempts) {
+                document.getElementById("message").textContent = `Game over! The word was ${wordToGuess}.`;
+                document.getElementById("guess-input").disabled = true;
+            } else {
+                document.getElementById("message").textContent = `Attempts left: ${maxAttempts - attempts}`;
+            }
+        }
+
+        // Initialize game rows
+        for (let i = 0; i < maxAttempts; i++) {
+            createGuessRow();
+        }
+    </script>
 
     <!-- Footer Section -->
     <footer>
