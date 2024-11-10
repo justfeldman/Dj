@@ -5,33 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Request</title>
     <style>
+        /* Base styling for the page */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f2f2f2;
             margin: 0;
+            overflow: hidden;
+            background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 1000% 1000%;
+            animation: gradientBackground 20s ease infinite;
         }
+
+        /* Gradient animation for background */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             width: 300px;
         }
+
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
+            color: #333;
         }
+
         label, input, button {
             margin-top: 10px;
             display: block;
             width: 100%;
             font-size: 16px;
         }
+
+        input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
         button {
             margin-top: 20px;
             padding: 10px;
@@ -40,7 +62,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #45a049;
         }
