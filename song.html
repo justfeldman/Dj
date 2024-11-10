@@ -5,33 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Request</title>
     <style>
+        /* Base styling for the page */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f2f2f2;
             margin: 0;
+            overflow: hidden;
+            background-color: #f2f2f2;
         }
+
+        /* Floating emoji styling */
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            animation: float 10s linear infinite;
+        }
+
+        /* Container styling */
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             text-align: center;
             width: 300px;
+            z-index: 1;
         }
+
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
+            color: #333;
         }
-        label, select, input, button {
+
+        label, input, button {
             margin-top: 10px;
             display: block;
             width: 100%;
             font-size: 16px;
         }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+        }
+
         button {
             margin-top: 20px;
             padding: 10px;
@@ -40,26 +69,39 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         button:hover {
             background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Floating animation for emojis */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Floating emojis as background -->
+    <div class="emoji" style="top: 90%; left: 10%; animation-duration: 12s;">🎶</div>
+    <div class="emoji" style="top: 100%; left: 30%; animation-duration: 15s;">🎉</div>
+    <div class="emoji" style="top: 110%; left: 50%; animation-duration: 10s;">🎸</div>
+    <div class="emoji" style="top: 120%; left: 70%; animation-duration: 18s;">🎤</div>
+    <div class="emoji" style="top: 130%; left: 90%; animation-duration: 14s;">🎧</div>
+
     <div class="container">
         <h1>Song Request</h1>
         <form id="songRequestForm">
+            <label for="userName">Your Name:</label>
+            <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
+
             <label for="songTitle">Song Title:</label>
             <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
-
-            <label for="speedOption">Playback Speed:</label>
-            <select id="speedOption" name="speedOption" required>
-                <option value="normal">Normal</option>
-                <option value="speedUp">Speed Up</option>
-                <option value="slowDown">Slow Down</option>
-            </select>
 
             <button type="submit">Submit</button>
         </form>
@@ -69,19 +111,10 @@
         document.getElementById('songRequestForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
+            const userName = document.getElementById('userName').value;
             const songTitle = document.getElementById('songTitle').value;
-            const speedOption = document.getElementById('speedOption').value;
-            let speedText;
 
-            if (speedOption === "speedUp") {
-                speedText = "sped up";
-            } else if (speedOption === "slowDown") {
-                speedText = "slowed down";
-            } else {
-                speedText = "played at normal speed";
-            }
-
-            alert(The song "${songTitle}" will be ${speedText}.);
+            alert(`Thank you, ${userName}! Your request for the song "${songTitle}" has been received.`);
         });
     </script>
 
