@@ -5,55 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Request</title>
     <style>
-        /* Base styling for the page */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            background-color: #f2f2f2;
             margin: 0;
-            overflow: hidden;
-            background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
-            background-size: 1000% 1000%;
-            animation: gradientBackground 20s ease infinite;
         }
-
-        /* Gradient animation for background */
-        @keyframes gradientBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .container {
-            background: rgba(255, 255, 255, 0.85);
+            background: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
             width: 300px;
         }
-
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
-            color: #333;
         }
-
-        label, input, button {
+        label, select, input, button {
             margin-top: 10px;
             display: block;
             width: 100%;
             font-size: 16px;
         }
-
-        input {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
         button {
             margin-top: 20px;
             padding: 10px;
@@ -62,9 +40,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-
         button:hover {
             background-color: #45a049;
         }
@@ -75,11 +51,15 @@
     <div class="container">
         <h1>Song Request</h1>
         <form id="songRequestForm">
-            <label for="userName">Your Name:</label>
-            <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
-
             <label for="songTitle">Song Title:</label>
             <input type="text" id="songTitle" name="songTitle" placeholder="Enter song title" required>
+
+            <label for="speedOption">Playback Speed:</label>
+            <select id="speedOption" name="speedOption" required>
+                <option value="normal">Normal</option>
+                <option value="speedUp">Speed Up</option>
+                <option value="slowDown">Slow Down</option>
+            </select>
 
             <button type="submit">Submit</button>
         </form>
@@ -89,10 +69,19 @@
         document.getElementById('songRequestForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const userName = document.getElementById('userName').value;
             const songTitle = document.getElementById('songTitle').value;
+            const speedOption = document.getElementById('speedOption').value;
+            let speedText;
 
-            alert(`Thank you, ${userName}! Your request for the song "${songTitle}" has been received.`);
+            if (speedOption === "speedUp") {
+                speedText = "sped up";
+            } else if (speedOption === "slowDown") {
+                speedText = "slowed down";
+            } else {
+                speedText = "played at normal speed";
+            }
+
+            alert(The song "${songTitle}" will be ${speedText}.);
         });
     </script>
 
