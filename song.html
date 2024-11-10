@@ -44,11 +44,6 @@
         button:hover {
             background-color: #45a049;
         }
-        #response {
-            margin-top: 20px;
-            font-size: 16px;
-            color: green;
-        }
     </style>
 </head>
 <body>
@@ -64,29 +59,16 @@
 
             <button type="submit">Submit</button>
         </form>
-        <div id="response"></div>
     </div>
 
     <script>
-        document.getElementById('songRequestForm').addEventListener('submit', async function(event) {
+        document.getElementById('songRequestForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const userName = document.getElementById('userName').value;
             const songTitle = document.getElementById('songTitle').value;
 
-            // Send data to backend
-            try {
-                const response = await fetch('http://localhost:5000/song-request', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userName, songTitle })
-                });
-                const result = await response.json();
-                document.getElementById('response').innerText = result.message;
-            } catch (error) {
-                document.getElementById('response').innerText = 'Error submitting request.';
-                console.error(error);
-            }
+            alert(`Thank you, ${userName}! Your request for the song "${songTitle}" has been received.`);
         });
     </script>
 
